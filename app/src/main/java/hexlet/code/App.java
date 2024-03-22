@@ -5,13 +5,21 @@ import picocli.CommandLine;
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "gendiff", mixinStandardHelpOptions = true, version = "1.0",
-        description = "Compares two configuration files and shows a difference.")
+                    description = "Compares two configuration files and shows a difference.")
 class App implements Callable<Integer> {
-    //@CommandLine.Option(names = "-x") int x;
+    @CommandLine.Parameters(paramLabel = "filepath1", description = "path to first file")
+    private String filePath1;
+    @CommandLine.Parameters(paramLabel = "filepath2", description = "path to second file")
+    private String filePath2;
+    @CommandLine.Option(names = {"-f", "--format"}, paramLabel = "format",
+            defaultValue = "stylish", description = "output format [default: ${DEFAULT-VALUE}]")
+    private String format;
+
     @Override
     public Integer call() { // business logic
         var diff = Differ.generate("", "");
-        //System.out.printf("x=%s%n", x);
+        System.out.printf("f1=%s,  f2=%s", filePath1, filePath2);
+        System.out.println();
         //return 123; // exit code
         return 0;
     }
