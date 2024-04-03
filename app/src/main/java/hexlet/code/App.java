@@ -16,10 +16,18 @@ class App implements Callable<Integer> {
     private String format;
 
     @Override
-    public Integer call() { // business logic
-        var diff = Differ.generate("", "");
-        System.out.printf("f1=%s,  f2=%s", filePath1, filePath2);
-        System.out.println();
+    public Integer call() {
+        try {
+            //var diff = Differ.generate("/home/lso/java-projects/filesTo71/file1.json"
+            //                           , "/home/lso/java-projects/filesTo71/file2.json");
+            //var diff = Differ.generate("../../filesTo71/file1.json", "../../filesTo71/file2.json");
+            var diff = Differ.generate(filePath1, filePath2);
+            System.out.println(diff);
+        } catch (Exception e) {
+            System.err.println("Внимание! Ошибка! " + e);
+        }
+        //System.out.printf("f1=%s,  f2=%s", filePath1, filePath2);
+        //System.out.println();
         //return 123; // exit code
         return 0;
     }
