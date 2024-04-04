@@ -36,8 +36,6 @@ jobs:
     - name: Build with Gradle Wrapper
       with:
           gradle-version: 8.6
-          build-root-directory: app
-          arguments: build
     - run: ./gradlew checkstyleMain
     - run: ./gradlew test
 
