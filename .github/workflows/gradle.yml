@@ -27,7 +27,11 @@ jobs:
           arguments: build
           build-root-directory: app
      # - run: ./gradlew checkstyleMain
-      - run: ./app/gradlew test
+      - uses: gradle/gradle-test-action@v1
+        with:
+          gradle-version: 8.6
+          arguments: test
+          build-root-directory: app
       # - name: Publish code coverage
       #   uses: paambaati/codeclimate-action@v5.0.0
       #   env:
