@@ -7,21 +7,21 @@ import java.util.concurrent.Callable;
 @CommandLine.Command(name = "gendiff", mixinStandardHelpOptions = true, version = "1.0",
                     description = "Compares two configuration files and shows a difference.")
 class App implements Callable<Integer> {
-    @CommandLine.Parameters(paramLabel = "filepath1", description = "path to first file")
+    /*@CommandLine.Parameters(paramLabel = "filepath1", description = "path to first file")
     private String filePath1;
     @CommandLine.Parameters(paramLabel = "filepath2", description = "path to second file")
     private String filePath2;
     @CommandLine.Option(names = {"-f", "--format"}, paramLabel = "format",
             defaultValue = "stylish", description = "output format [default: ${DEFAULT-VALUE}]")
-    private String format;
+    private String format;*/
 
     @Override
     public Integer call() {
         try {
             //var diff = Differ.generate("/home/lso/java-projects/filesTo71/file1.json"
             //                           , "/home/lso/java-projects/filesTo71/file2.json");
-            //var diff = Differ.generate("../../filesTo71/file1.json", "../../filesTo71/file2.json");
-            var diff = Differ.generate(filePath1, filePath2);
+            var diff = Differ.generate("../../filesTo71/file1.json", "../../filesTo71/file2.json");
+            //var diff = Differ.generate(filePath1, filePath2);
             System.out.println(diff);
         } catch (Exception e) {
             System.err.println("Внимание! Ошибка! " + e);
