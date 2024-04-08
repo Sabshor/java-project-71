@@ -30,17 +30,15 @@ jobs:
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@417ae3ccd767c252f5661f1ace9f835f9654f2b5 # v3.1.0
+
+    #- name: Build with Gradle Wrapper
+    #  run: ./app/gradlew build
+
+    - uses: gradle/gradle-build-action@v2
       with:
+        gradle-version: 8.6
+        arguments: build
         build-root-directory: app
-
-    - name: Build with Gradle Wrapper
-      run: ./app/gradlew build
-
-    #- uses: gradle/gradle-build-action@v2
-    #  with:
-    #    gradle-version: 8.6
-    #    arguments: build
-    #    build-root-directory: app
 
 
     #- name: Tests only with Gradle
