@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DifferTest {
     static TreeMap<String, String> map1 = new TreeMap<>();
