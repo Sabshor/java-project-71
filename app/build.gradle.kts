@@ -1,6 +1,7 @@
 plugins {
     application
     checkstyle
+    jacoco
 }
 
 group = "hexlet.code"
@@ -31,4 +32,13 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+jacoco {
+    applyTo(tasks.run.get())
+}
+
+tasks.register<JacocoReport>("applicationCodeCoverageReport") {
+    executionData(tasks.run.get())
+    sourceSets(sourceSets.main.get())
 }
