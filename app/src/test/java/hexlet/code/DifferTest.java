@@ -3,10 +3,12 @@ package hexlet.code;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DifferTest {
     static TreeMap<String, String> map1 = new TreeMap<>();
@@ -36,5 +38,25 @@ public class DifferTest {
                 }
                 """;
         assertEquals(Differ.compare(map1, map2), actual);
+    }
+
+    @Test
+    public void compareJsonTest() throws Exception {
+        String actual = """
+                {
+                  - follow: false
+                    host: hexlet.io
+                  - proxy: 123.234.53.22
+                  - timeout: 50
+                  + timeout: 20
+                  + verbose: true
+                }
+                """;
+        String path = "src/test/resources/fixtures/json";
+
+        File file1 = new File(path.concat("/file1.json"));
+        String absolutePath = file1.getAbsolutePath();
+        System.out.println(absolutePath);
+        assertEquals(Differ.generate(path.concat("/file1.json"), path.concat("/file2.json")), actual);
     }
 }
