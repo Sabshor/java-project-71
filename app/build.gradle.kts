@@ -15,6 +15,11 @@ repositories {
     mavenCentral()
 }
 
+jacoco {
+    toolVersion = "0.8.11"
+    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
+}
+
 dependencies {
     compileOnly("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")
@@ -22,23 +27,23 @@ dependencies {
     implementation("info.picocli:picocli:4.7.5")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.1")
 
-    //testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    //testImplementation("org.junit.jupiter:junit-jupiter")
-
-    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.2")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
 }
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
 }
 
-jacoco {
-    applyTo(tasks.run.get())
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoTestCoverageHtml")
+    }
 }
 
-tasks.register<JacocoReport>("applicationCodeCoverageReport") {
-    executionData(tasks.run.get())
-    sourceSets(sourceSets.main.get())
-}
+
+
