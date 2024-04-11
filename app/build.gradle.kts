@@ -15,11 +15,6 @@ repositories {
     mavenCentral()
 }
 
-jacoco {
-    toolVersion = "0.8.11"
-    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
-}
-
 dependencies {
     compileOnly("org.projectlombok:lombok:1.18.32")
     annotationProcessor("org.projectlombok:lombok:1.18.32")
@@ -39,10 +34,7 @@ tasks.test {
 tasks.jacocoTestReport {
     dependsOn(tasks.test) // tests are required to run before generating the report
     reports {
-        html.required = true
         xml.required = true
-        csv.required = false
-       // html.outputLocation = layout.buildDirectory.dir("jacocoTestCoverageHtml")  --> customJacocoReportDir
     }
 }
 
