@@ -40,6 +40,10 @@ jobs:
         arguments: build
         build-root-directory: app
 
+    - run: |
+        cd app
+        make build
+          
     - name: Publish code coverage
       uses: paambaati/codeclimate-action@v5.0.0
       env:
