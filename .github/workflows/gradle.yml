@@ -40,19 +40,17 @@ jobs:
         arguments: build
         build-root-directory: app
 
-
     #- name: Tests only with Gradle
     #  run: gradle clean test
-        
     
-    # - name: Publish code coverage
-    #   uses: paambaati/codeclimate-action@v5.0.0
-    #   env:
-    #     CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
-    #     JACOCO_SOURCE_PATH: src/main/java
-    #   with:
-    #     coverageCommand: make report
-    #     coverageLocations: ${{github.workspace}}/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
+    - name: Publish code coverage
+      uses: paambaati/codeclimate-action@v5.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+        JACOCO_SOURCE_PATH: src/main/java
+      with:
+        coverageCommand: make report
+        coverageLocations: ${{github.workspace}}/build/jacocoTestCoverageHtml.html:jacoco
 
 
   dependency-submission:
