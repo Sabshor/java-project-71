@@ -48,10 +48,11 @@ jobs:
     #  run: gradle clean test
     
     - name: Publish code coverage
-      uses: paambaati/codeclimate-action@v5.0.0
+     # uses: paambaati/codeclimate-action@v5.0.0
+      uses: paambaati/codeclimate-action@prefix-support
       with:
         coverageCommand: make report
-    #    coverageLocations: ${{github.workspace}}/build/jacocoTestCoverageHtml.html:jacoco
+        coverageLocations: ${{github.workspace}}/app/build/customJacocoReportDir/test/jacocoTestReport.xml:jacoco
 
 
   dependency-submission:
