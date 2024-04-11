@@ -12,11 +12,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
-env:
-  CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
- #JACOCO_SOURCE_PATH: src/main/java
-    
+   
 jobs:
   build:
 
@@ -46,13 +42,14 @@ jobs:
 
     #- name: Tests only with Gradle
     #  run: gradle clean test
-    
-    - name: Publish code coverage
-     # uses: paambaati/codeclimate-action@v5.0.0
-      uses: paambaati/codeclimate-action@prefix-support
+    - name: Test & publish code coverage
+      uses: paambaati/codeclimate-action@v5.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
       with:
         coverageCommand: make report
-        coverageLocations: ${{github.workspace}}/app/build/customJacocoReportDir/test/jacocoTestReport.xml:jacoco
+        coverageLocations: |
+          ${{github.workspace}}/jacocoTestReport.xml:jacoco
 
 
   dependency-submission:
