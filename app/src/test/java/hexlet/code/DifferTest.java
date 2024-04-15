@@ -58,4 +58,28 @@ public class DifferTest {
         System.out.println(absolutePath);
         assertEquals(Differ.generate(path.concat("/file1.json"), path.concat("/file2.json")), actual);
     }
+
+    @Test
+    public void compareYmlTest() throws Exception {
+        String actual = """
+                {
+                    cache: maven
+                    distribution: temurin
+                  - fail-fast: false
+                    java_opts: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+                  - java_version: 19
+                  + java_version: 20
+                  - name: Set up JDK
+                  + name: Set up JRE
+                  + os: ubuntu-20.04
+                    uses: actions/checkout@v4
+                }
+                """;
+        String path = "src/test/resources/fixtures/yml";
+
+        File file1 = new File(path.concat("/file1.yml"));
+        String absolutePath = file1.getAbsolutePath();
+        System.out.println(absolutePath);
+        assertEquals(Differ.generate(path.concat("/file1.yml"), path.concat("/file2.yml")), actual);
+    }
 }
