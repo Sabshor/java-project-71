@@ -20,9 +20,11 @@ class App implements Callable<Integer> {
         try {
             //var diff = Differ.generate("/home/lso/java-projects/filesTo71/file1.json"
             //                           , "/home/lso/java-projects/filesTo71/file2.json");
-            var diff = Differ.generate("../../filesTo71/file1.json", "../../filesTo71/file2.json");
+           // var diff = Differ.generate("../../filesTo71/file1.json", "../../filesTo71/file2.json");
+            var diff2 = Differ.generate("../../filesTo71/file_yaml1.yml", "../../filesTo71/file_yaml2.yml");
             //var diff = Differ.generate(filePath1, filePath2);
-            System.out.println(diff);
+           // System.out.println(diff);
+            System.out.println(diff2);
         } catch (Exception e) {
             System.err.println("Внимание! Ошибка! " + e);
         }

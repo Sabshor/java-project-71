@@ -8,21 +8,17 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+
 public class Differ {
 
     public static String generate(String filePath1, String filePath2) throws Exception {
         File file1 = getFile(filePath1);
         File file2 = getFile(filePath2);
 
-        final TreeMap<String, String> map1 = getDataParse(file1);
-        final TreeMap<String, String> map2 = getDataParse(file2);
+        final TreeMap<String, String> map1 = Parser.getDataParse(file1);
+        final TreeMap<String, String> map2 = Parser.getDataParse(file2);
 
         return compare(map1, map2);
-    }
-
-    public static TreeMap<String, String> getDataParse(File file) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(file, new TypeReference<>() { });
     }
 
     public static String compare(Map<String, String> map1, Map<String, String> map2) {
