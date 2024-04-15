@@ -18,3 +18,5 @@
 
 ### Demo compare json files
 [![asciicast](https://asciinema.org/a/wM5QyGJqJK440j64etM1XgFFG.svg)](https://asciinema.org/a/wM5QyGJqJK440j64etM1XgFFG)
+### Demo compare yaml files
+[![asciicast](https://asciinema.org/a/Xt01hi3W07WJJlDAUBrxWLX9A.svg)](https://asciinema.org/a/Xt01hi3W07WJJlDAUBrxWLX9A)
