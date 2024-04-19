@@ -14,11 +14,11 @@ public class Formatter {
         return switch (format) {
             case "stylish" -> diff.stream()
                     .map(Stylish::setStylishFormat)
-                    .collect(Collectors.joining("\n", "{\n", "\n}\n"));
+                    .collect(Collectors.joining("\n", "{\n", "\n}"));
             case "plain" -> diff.stream()
                     .map(Plain::setPlainFormat)
                     .filter(Predicate.not(String::isEmpty))
-                    .collect(Collectors.joining("\n", "", "\n"));
+                    .collect(Collectors.joining("\n", "", ""));
             case "json" -> diff.stream()
                     .map(Json::setJsonFormat)
                     .collect(Collectors.joining(",\n", "[\n", "\n]\n"));
