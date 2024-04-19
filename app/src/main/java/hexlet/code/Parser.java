@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.TreeMap;
 
 public class Parser {
-    public static TreeMap<String, String> getDataParse(File file) throws Exception {
+    public static TreeMap<String, Object> getDataParse(File file) throws Exception {
         String fileExtension = FilenameUtils.getExtension(file.getName());
         ObjectMapper mapper = getMapper(fileExtension);
         return mapper.readValue(file, new TypeReference<>() { });
