@@ -1,15 +1,16 @@
 package hexlet.code;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
-    static String formatStylishActual;
-    static String formatPlainActual;
-    static String formatJsonActual;
+    private static String formatStylishActual;
+    private static String formatPlainActual;
+    private static String formatJsonActual;
     @BeforeAll
     public static void beforeAll() {
         formatStylishActual = """
