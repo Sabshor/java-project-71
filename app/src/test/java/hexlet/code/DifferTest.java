@@ -12,6 +12,7 @@ public class DifferTest {
     static TreeMap<String, Object> map1 = new TreeMap<>();
     static TreeMap<String, Object> map2 = new TreeMap<>();
     static String formatStylishActual;
+    static String formatPlainActual;
     @BeforeAll
     public static void beforeAll() {
         map1.putAll(Map.of("host", "hexlet.io",
@@ -48,8 +49,22 @@ public class DifferTest {
                   + setting3: none
                 }
                 """;
+        formatPlainActual = """
+                Property 'chars2' was updated. From [complex value] to false
+                Property 'checked' was updated. From false to true
+                Property 'default' was updated. From null to [complex value]
+                Property 'id' was updated. From 45 to null
+                Property 'key1' was removed
+                Property 'key2' was added with value: 'value2'
+                Property 'numbers2' was updated. From [complex value] to [complex value]
+                Property 'numbers3' was removed
+                Property 'numbers4' was added with value: [complex value]
+                Property 'obj1' was added with value: [complex value]
+                Property 'setting1' was updated. From 'Some value' to 'Another value'
+                Property 'setting2' was updated. From 200 to 300
+                Property 'setting3' was updated. From true to 'none'
+                """;
     }
-
 
     @Test
     public void getLineMessageTest() {
@@ -63,21 +78,37 @@ public class DifferTest {
                   + verbose: true
                 }
                 """;
-        assertEquals(Differ.compare(map1, map2), actual);
+        assertEquals(Formatter.checkFormat(Compare.getDifferenceMap(map1, map2), "stylish"), actual);
     }
 
     @Test
-    public void compareJsonTest() throws Exception {
+    public void compareJsonTestStylish() throws Exception {
         String path = "src/test/resources/fixtures/json";
         /*File file1 = new File(path.concat("/file1.json"));
         String absolutePath = file1.getAbsolutePath();
         System.out.println(absolutePath);*/
-        assertEquals(Differ.generate(path.concat("/file1.json"), path.concat("/file2.json"), ""), formatStylishActual);
+        assertEquals(Differ.generate(path.concat("/file1.json"),
+                path.concat("/file2.json"), ""), formatStylishActual);
     }
 
     @Test
-    public void compareYmlTest() throws Exception {
+    public void compareYmlTestStylish() throws Exception {
         String path = "src/test/resources/fixtures/yml";
-        assertEquals(Differ.generate(path.concat("/file1.yml"), path.concat("/file2.yml"), ""), formatStylishActual);
+        assertEquals(Differ.generate(path.concat("/file1.yml"),
+                path.concat("/file2.yml"), ""), formatStylishActual);
+    }
+
+    @Test
+    public void compareJsonTestPlain() throws Exception {
+        String path = "src/test/resources/fixtures/json";
+        assertEquals(Differ.generate(path.concat("/file1.json"),
+                path.concat("/file2.json"), "Plain"), formatPlainActual);
+    }
+
+    @Test
+    public void compareYmlTestPlain() throws Exception {
+        String path = "src/test/resources/fixtures/yml";
+        assertEquals(Differ.generate(path.concat("/file1.yml"),
+                path.concat("/file2.yml"), "plain"), formatPlainActual);
     }
 }

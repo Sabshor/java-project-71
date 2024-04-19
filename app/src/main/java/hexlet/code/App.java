@@ -1,7 +1,6 @@
 package hexlet.code;
 
 import picocli.CommandLine;
-
 import java.util.concurrent.Callable;
 
 @CommandLine.Command(name = "gendiff", mixinStandardHelpOptions = true, version = "1.0",
@@ -20,8 +19,8 @@ class App implements Callable<Integer> {
         try {
             //var diff = Differ.generate("/home/lso/java-projects/filesTo71/file1.json"
             //                           , "/home/lso/java-projects/filesTo71/file2.json");
-           // var diff = Differ.generate("../../filesTo71/file1.json", "../../filesTo71/file2.json");
-            //var diff = Differ.generate("../../filesTo71/file11.json", "../../filesTo71/file22.json");
+            //var diff = Differ.generate("../../filesTo71/file1.json", "../../filesTo71/file2.json", "Plain");
+            //var diff = Differ.generate("../../filesTo71/file11.json", "../../filesTo71/file22.json", "plain");
             //var diff2 = Differ.generate("../../filesTo71/file1.yml", "../../filesTo71/file2.yml");
             var diff = Differ.generate(filePath1, filePath2, format);
             System.out.println(diff);

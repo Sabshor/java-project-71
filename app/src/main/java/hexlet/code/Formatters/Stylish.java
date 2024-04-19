@@ -1,15 +1,15 @@
-package hexlet.code.Formatter;
+package hexlet.code.Formatters;
 
+import hexlet.code.Compare;
 import java.util.HashMap;
 
 public class Stylish {
-
     public static String setStylishFormat(HashMap<String, Object> map) {
         return switch (map.get("status").toString()) {
-            case "added"     -> getLineMessage("+", map.get("key"), map.get("value"));
-            case "removed"   -> getLineMessage("-", map.get("key"), map.get("valueRemoved"));
-            case "unchanged" -> getLineMessage(" ", map.get("key"), map.get("value"));
-            case "updated"   -> getLineMessage("-", map.get("key"), map.get("valueRemoved"))
+            case Compare.STATUS_ADDED     -> getLineMessage("+", map.get("key"), map.get("value"));
+            case Compare.STATUS_REMOVED   -> getLineMessage("-", map.get("key"), map.get("valueRemoved"));
+            case Compare.STATUS_UNCHANGED -> getLineMessage(" ", map.get("key"), map.get("value"));
+            case Compare.STATUS_UPDATED   -> getLineMessage("-", map.get("key"), map.get("valueRemoved"))
                                 .concat("\n")
                                 .concat(getLineMessage("+", map.get("key"), map.get("value")));
             default -> throw new RuntimeException("Error parse unknown diff status");
