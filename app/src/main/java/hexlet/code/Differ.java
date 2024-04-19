@@ -15,6 +15,10 @@ public class Differ {
         return Formatter.checkFormat(Compare.getDifferenceMap(map1, map2), format);
     }
 
+    public static String generate(String filePath1, String filePath2) throws Exception {
+        return generate(filePath1, filePath2, "stylish");
+    }
+
     private static File getFile(String pathFile) throws Exception {
         File file1 = new File(pathFile);
         if (!file1.exists() || file1.isDirectory()) {
