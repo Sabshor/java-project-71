@@ -70,8 +70,7 @@ public class DifferTest {
                 {"key":"setting1","value":"Another value","valueRemoved":"Some value","status":"updated"},
                 {"key":"setting2","value":300,"valueRemoved":200,"status":"updated"},
                 {"key":"setting3","value":"none","valueRemoved":true,"status":"updated"}
-                ]
-                """;
+                ]""";
     }
 
     @Test

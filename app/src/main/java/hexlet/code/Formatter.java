@@ -21,7 +21,7 @@ public class Formatter {
                     .collect(Collectors.joining("\n", "", ""));
             case "json" -> diff.stream()
                     .map(Json::setJsonFormat)
-                    .collect(Collectors.joining(",\n", "[\n", "\n]\n"));
+                    .collect(Collectors.joining(",\n", "[\n", "\n]"));
             default -> throw new RuntimeException("Unknown style format");
         };
     }
