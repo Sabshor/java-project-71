@@ -16,5 +16,17 @@
 
 <div><br></div>
 
-### Demo compare json, yml files with stylish, plain and json output format
+### Demo compare json, yml files with stylish, plain and json output format (finish lesson)
 [![asciicast](https://asciinema.org/a/kM9tUx32PWB15zEzWGI1rmLYV.svg)](https://asciinema.org/a/kM9tUx32PWB15zEzWGI1rmLYV)
+
+### demo step 4 (lesson add format plain)
+[![asciicast](https://asciinema.org/a/81hpaEDztsZCkmJuB8CLrbyaO.svg)](https://asciinema.org/a/81hpaEDztsZCkmJuB8CLrbyaO)
+
+### demo step 3 (lesson add format stylish)
+[![asciicast](https://asciinema.org/a/a4h8fET2I1Q7Vs6ZkgS9TsPvs.svg)](https://asciinema.org/a/a4h8fET2I1Q7Vs6ZkgS9TsPvs)
+
+### demo step 2 (lesson compare yaml)
+[![asciicast](https://asciinema.org/a/Xt01hi3W07WJJlDAUBrxWLX9A.svg)](https://asciinema.org/a/Xt01hi3W07WJJlDAUBrxWLX9A)
+
+### demo step 1 (lesson compare json)
+[![asciicast](https://asciinema.org/a/wM5QyGJqJK440j64etM1XgFFG.svg)](https://asciinema.org/a/wM5QyGJqJK440j64etM1XgFFG)
