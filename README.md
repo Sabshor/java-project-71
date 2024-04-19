@@ -16,5 +16,5 @@
 
 <div><br></div>
 
-### Demo compare json, yml files with stylish format
-[![asciicast](https://asciinema.org/a/a4h8fET2I1Q7Vs6ZkgS9TsPvs.svg)](https://asciinema.org/a/a4h8fET2I1Q7Vs6ZkgS9TsPvs)
+### Demo compare json, yml files with stylish, plain format
+[![asciicast](https://asciinema.org/a/81hpaEDztsZCkmJuB8CLrbyaO.svg)](https://asciinema.org/a/81hpaEDztsZCkmJuB8CLrbyaO)
