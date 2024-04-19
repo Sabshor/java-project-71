@@ -1,10 +1,10 @@
 package hexlet.code.Formatters;
 
 import hexlet.code.Compare;
-import java.util.HashMap;
+import java.util.Map;
 
 public class Stylish {
-    public static String setStylishFormat(HashMap<String, Object> map) {
+    public static String setStylishFormat(Map<String, Object> map) {
         return switch (map.get("status").toString()) {
             case Compare.STATUS_ADDED     -> getLineMessage("+", map.get("key"), map.get("value"));
             case Compare.STATUS_REMOVED   -> getLineMessage("-", map.get("key"), map.get("valueRemoved"));

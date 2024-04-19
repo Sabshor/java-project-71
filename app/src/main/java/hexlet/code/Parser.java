@@ -6,10 +6,10 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
-import java.util.TreeMap;
+import java.util.Map;
 
 public class Parser {
-    public static TreeMap<String, Object> getDataParse(File file) throws Exception {
+    public static Map<String, Object> getDataParse(File file) throws Exception {
         String fileExtension = FilenameUtils.getExtension(file.getName());
         ObjectMapper mapper = getMapper(fileExtension);
         return mapper.readValue(file, new TypeReference<>() { });

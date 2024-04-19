@@ -1,14 +1,13 @@
 package hexlet.code.Formatters;
 
 import hexlet.code.Compare;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Plain {
 
     static final String COMPLEX_VALUE = "[complex value]";
-    public static String setPlainFormat(HashMap<String, Object> map) {
+    public static String setPlainFormat(Map<String, Object> map) {
         return switch (map.get("status").toString()) {
             case Compare.STATUS_ADDED,
                  Compare.STATUS_UNCHANGED -> getLineMessage(map.get("status").toString(),
@@ -45,9 +44,6 @@ public class Plain {
     }
 
     private static String getComplexValue(Object o1) {
-        if (o1 == null) {
-            return "";
-        }
         if (o1 instanceof String) {
             if (!"null".equals(String.valueOf(o1))) {
                 return "'".concat(String.valueOf(o1)).concat("'");

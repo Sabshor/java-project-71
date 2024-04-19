@@ -17,20 +17,14 @@ class App implements Callable<Integer> {
     @Override
     public Integer call() {
         try {
-            //var diff = Differ.generate("/home/lso/java-projects/filesTo71/file1.json"
-            //                           , "/home/lso/java-projects/filesTo71/file2.json");
-            //var diff = Differ.generate("../../filesTo71/file1.json", "../../filesTo71/file2.json", "Plain");
-            //var diff = Differ.generate("../../filesTo71/file11.json", "../../filesTo71/file22.json", "plain");
-            //var diff2 = Differ.generate("../../filesTo71/file1.yml", "../../filesTo71/file2.yml");
-            var diff = Differ.generate(filePath1, filePath2, format);
-            System.out.println(diff);
-            //System.out.println(diff2);
+            //System.out.println(Differ.generate("../../filesTo71/file1.json", "../../filesTo71/file2.json", "Plain"));
+            //System.out.println(Differ.generate("../../filesTo71/file11.json","../../filesTo71/file22.json", "plain"));
+            //System.out.println(Differ.generate("../../filesTo71/file1.yml", "../../filesTo71/file2.yml", "json"));
+
+            System.out.println(Differ.generate(filePath1, filePath2, format));
         } catch (Exception e) {
             System.err.println("Внимание! Ошибка! " + e);
         }
-        //System.out.printf("f1=%s,  f2=%s", filePath1, filePath2);
-        //System.out.println();
-        //return 123; // exit code
         return 0;
     }
     public static void main(String[] args) {

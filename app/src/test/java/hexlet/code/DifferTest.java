@@ -3,25 +3,15 @@ package hexlet.code;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.Map;
-import java.util.TreeMap;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
-    static TreeMap<String, Object> map1 = new TreeMap<>();
-    static TreeMap<String, Object> map2 = new TreeMap<>();
+
     static String formatStylishActual;
     static String formatPlainActual;
+    static String formatJsonActual;
     @BeforeAll
     public static void beforeAll() {
-        map1.putAll(Map.of("host", "hexlet.io",
-                           "timeout", "50",
-                           "proxy", "123.234.53.22",
-                           "follow", "false"));
-        map2.putAll(Map.of("timeout", "20",
-                           "verbose", "true",
-                           "host", "hexlet.io"));
         formatStylishActual = """
                 {
                     chars1: [a, b, c]
@@ -64,21 +54,26 @@ public class DifferTest {
                 Property 'setting2' was updated. From 200 to 300
                 Property 'setting3' was updated. From true to 'none'
                 """;
-    }
 
-    @Test
-    public void getLineMessageTest() {
-        String actual = """
-                {
-                  - follow: false
-                    host: hexlet.io
-                  - proxy: 123.234.53.22
-                  - timeout: 50
-                  + timeout: 20
-                  + verbose: true
-                }
+        formatJsonActual = """
+                [
+                {"key":"chars1","value":["a","b","c"],"valueRemoved":"","status":"unchanged"},
+                {"key":"chars2","value":false,"valueRemoved":["d","e","f"],"status":"updated"},
+                {"key":"checked","value":true,"valueRemoved":false,"status":"updated"},
+                {"key":"default","value":["value1","value2"],"valueRemoved":null,"status":"updated"},
+                {"key":"id","value":null,"valueRemoved":45,"status":"updated"},
+                {"key":"key1","value":"","valueRemoved":"value1","status":"removed"},
+                {"key":"key2","value":"value2","valueRemoved":"","status":"added"},
+                {"key":"numbers1","value":[1,2,3,4],"valueRemoved":"","status":"unchanged"},
+                {"key":"numbers2","value":[22,33,44,55],"valueRemoved":[2,3,4,5],"status":"updated"},
+                {"key":"numbers3","value":"","valueRemoved":[3,4,5],"status":"removed"},
+                {"key":"numbers4","value":[4,5,6],"valueRemoved":"","status":"added"},
+                {"key":"obj1","value":{"nestedKey":"value","isNested":true},"valueRemoved":"","status":"added"},
+                {"key":"setting1","value":"Another value","valueRemoved":"Some value","status":"updated"},
+                {"key":"setting2","value":300,"valueRemoved":200,"status":"updated"},
+                {"key":"setting3","value":"none","valueRemoved":true,"status":"updated"}
+                ]
                 """;
-        assertEquals(Formatter.checkFormat(Compare.getDifferenceMap(map1, map2), "stylish"), actual);
     }
 
     @Test
@@ -110,5 +105,19 @@ public class DifferTest {
         String path = "src/test/resources/fixtures/yml";
         assertEquals(Differ.generate(path.concat("/file1.yml"),
                 path.concat("/file2.yml"), "plain"), formatPlainActual);
+    }
+
+    @Test
+    public void compareYmlTestJson() throws Exception {
+        String path = "src/test/resources/fixtures/yml";
+        assertEquals(Differ.generate(path.concat("/file1.yml"),
+                path.concat("/file2.yml"), "JSON"), formatJsonActual);
+    }
+
+    @Test
+    public void compareJsonTestJson() throws Exception {
+        String path = "src/test/resources/fixtures/json";
+        assertEquals(Differ.generate(path.concat("/file1.json"),
+                path.concat("/file2.json"), "JSON"), formatJsonActual);
     }
 }

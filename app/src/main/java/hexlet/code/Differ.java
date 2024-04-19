@@ -1,7 +1,6 @@
 package hexlet.code;
 
 import java.io.File;
-import java.util.TreeMap;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2, String formatName) throws Exception {
@@ -10,8 +9,8 @@ public class Differ {
         File file1 = getFile(filePath1);
         File file2 = getFile(filePath2);
 
-        final TreeMap<String, Object> map1 = Parser.getDataParse(file1);
-        final TreeMap<String, Object> map2 = Parser.getDataParse(file2);
+        final var map1 = Parser.getDataParse(file1);
+        final var map2 = Parser.getDataParse(file2);
 
         return Formatter.checkFormat(Compare.getDifferenceMap(map1, map2), format);
     }
