@@ -1,6 +1,8 @@
 package hexlet.code;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2, String formatName) throws Exception {
@@ -20,10 +22,10 @@ public class Differ {
     }
 
     private static File getFile(String pathFile) throws Exception {
-        File file1 = new File(pathFile);
-        if (!file1.exists() || file1.isDirectory()) {
+        Path normalizeAbsolutePath = Path.of(pathFile).normalize().toAbsolutePath();
+        if (!Files.exists(normalizeAbsolutePath) || Files.isDirectory(normalizeAbsolutePath)) {
             throw new Exception("no such file " + pathFile);
         }
-        return file1;
+        return normalizeAbsolutePath.toFile();
     }
 }

@@ -1,12 +1,12 @@
-package hexlet.code.Formatters;
+package hexlet.code.formatters;
 
 import hexlet.code.Compare;
 import java.util.List;
 import java.util.Map;
 
 public class Plain {
-
     static final String COMPLEX_VALUE = "[complex value]";
+
     public static String setPlainFormat(Map<String, Object> map) {
         return switch (map.get("status").toString()) {
             case Compare.STATUS_ADDED,
@@ -21,25 +21,27 @@ public class Plain {
     }
 
     private static String getLineMessage(String sign, Object key, Object value, Object valueRemoved) {
-        String keyValue = String.valueOf(key);
         if (sign.equals(Compare.STATUS_UNCHANGED)) {
             return "";
         }
+        String keyValue = String.valueOf(key);
         StringBuilder sb = new StringBuilder("Property '".concat(keyValue)
                                             .concat("' was ").concat(sign));
-        if (sign.equals(Compare.STATUS_REMOVED)) {
-            return sb.toString();
+        switch (sign) {
+            case Compare.STATUS_REMOVED:
+                break;
+            case Compare.STATUS_ADDED:
+                sb.append(" with value: ");
+                sb.append(getComplexValue(value));
+                break;
+            case Compare.STATUS_UPDATED:
+                sb.append(". From ");
+                sb.append(getComplexValue(valueRemoved));
+                sb.append(" to ");
+                sb.append(getComplexValue(value));
+                break;
+            default: throw new RuntimeException("unknown diff status");
         }
-        if (sign.equals(Compare.STATUS_ADDED)) {
-            sb.append(" with value: ");
-            sb.append(getComplexValue(value));
-            return sb.toString();
-        }
-        sb.append(". From ");
-        sb.append(getComplexValue(valueRemoved));
-        sb.append(" to ");
-        sb.append(getComplexValue(value));
-
         return sb.toString();
     }
 
@@ -52,7 +54,6 @@ public class Plain {
         if ((o1 instanceof List<?>) || (o1 instanceof Map<?, ?>)) {
             return COMPLEX_VALUE;
         }
-
         return String.valueOf(o1);
     }
 }

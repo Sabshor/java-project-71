@@ -18,7 +18,7 @@ public class Parser {
     private static ObjectMapper getMapper(String fileExtension) throws Exception {
         return switch (fileExtension.toUpperCase()) {
             case "JSON" -> new ObjectMapper();
-            case "YML" -> new YAMLMapper();
+            case "YML", "YAML" -> new YAMLMapper();
             default -> throw new Exception("no such file format " + fileExtension);
         };
     }

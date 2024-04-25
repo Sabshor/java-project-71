@@ -17,9 +17,8 @@ class App implements Callable<Integer> {
     @Override
     public Integer call() {
         try {
-            //System.out.println(Differ.generate("../../filesTo71/file1.json", "../../filesTo71/file2.json", "Plain"));
-            //System.out.println(Differ.generate("../../filesTo71/file11.json","../../filesTo71/file22.json", "plain"));
-            //System.out.println(Differ.generate("../../filesTo71/file1.yml", "../../filesTo71/file2.yml", "json"));
+            //System.out.println(Differ.generate("/home/<user>/java-projects/filesTo71/file1.yml",
+            //                                    "../../filesTo71/file2.yml", "json"));
 
             System.out.println(Differ.generate(filePath1, filePath2, format));
         } catch (Exception e) {

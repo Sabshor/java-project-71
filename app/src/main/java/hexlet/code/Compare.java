@@ -19,29 +19,25 @@ public class Compare {
                 .map((e) -> {
                     var lineInfo = new LinkedHashMap<String, Object>();
                     String key = e.getKey();
+                    var compareValue1 = map1.get(key) == null ? "null" : map1.get(key);
+                    var compareValue2 = map2.get(key) == null ? "null" : map2.get(key);
                     lineInfo.put("key", key);
-                    if (map2.containsKey(key)) {
-                        var compareValue2 = map2.get(key) == null ? "null" : map2.get(key);
-                        if (map1.containsKey(key)) {
-                            var compareValue1 = map1.get(key) == null ? "null" : map1.get(key);
-                            if (compareValue1.equals(compareValue2)) {
-                                lineInfo.put("value", map1.get(key));
-                                lineInfo.put("valueRemoved", "");
-                                lineInfo.put("status", STATUS_UNCHANGED);
-                            } else {
-                                lineInfo.put("value", map2.get(key));
-                                lineInfo.put("valueRemoved", map1.get(key));
-                                lineInfo.put("status", STATUS_UPDATED);
-                            }
-                        } else {
-                            lineInfo.put("value", map2.get(key));
-                            lineInfo.put("valueRemoved", "");
-                            lineInfo.put("status", STATUS_ADDED);
-                        }
-                    } else {
+                    if (!map2.containsKey(key)) {
                         lineInfo.put("value", "");
                         lineInfo.put("valueRemoved", e.getValue());
                         lineInfo.put("status", STATUS_REMOVED);
+                    } else if (!map1.containsKey(key)) {
+                        lineInfo.put("value", map2.get(key));
+                        lineInfo.put("valueRemoved", "");
+                        lineInfo.put("status", STATUS_ADDED);
+                    } else if (!compareValue1.equals(compareValue2)) {
+                        lineInfo.put("value", map2.get(key));
+                        lineInfo.put("valueRemoved", map1.get(key));
+                        lineInfo.put("status", STATUS_UPDATED);
+                    } else {
+                        lineInfo.put("value", map1.get(key));
+                        lineInfo.put("valueRemoved", "");
+                        lineInfo.put("status", STATUS_UNCHANGED);
                     }
                     return lineInfo;
                 })
