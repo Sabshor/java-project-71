@@ -11,8 +11,7 @@
 <ul>
     <li>Поддержка разных входных форматов: yaml и json</li>
     <li>Генерация отчета в виде plain text, stylish и json</li>
-</ul>
-</div>
+</ul></div>
 
 <div><br></div>
 
